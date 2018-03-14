@@ -17,6 +17,6 @@ const userSchema = mongoose.Schema({
 });
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://<root>:<root>@ds139969.mlab.com:39969/node-login',{ useMongoClient: true });
+mongoose.connect('mongodb://root:root@ds139969.mlab.com:39969/node-login',{ useMongoClient: true });
 
 module.exports = mongoose.model('user', userSchema);
