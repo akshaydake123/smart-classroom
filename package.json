@@ -2,6 +2,9 @@
   "name": "node-login",
   "version": "1.0.0",
   "main": "app.js",
+  "scripts": {
+  "start": "node app.js"
+}
   "dependencies": {
     "async": "^2.6.0",
     "basic-auth": "^1.0.4",
