@@ -24,22 +24,11 @@ var db;
 const async = require('async');
 module.exports = router => {
 
-	// Initialize connection once
 
-
-/*
-  MongoClient.connect("mongodb://localhost:27017/information", function(err, database) {
- 	 if(err) return console.error(err+"Hello database error");
-
- 	 db = database;
-
- 	 // the Mongo driver recommends starting the server here because most apps *should* fail to start if they have no DB.  If yours is the exception, move the server startup elsewhere.
-  });
-*/
 router.get("/display",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://<root>:<root>@ds113749.mlab.com:13749/information";
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 var db1;
 MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
@@ -71,7 +60,7 @@ MongoClient.connect(url, function(err, db1) {
         });
 			*/
 			var MongoClient = require('mongodb').MongoClient;
-			var url = "mongodb://<root>:<root>@ds113749.mlab.com:13749/information";
+			var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 
 			MongoClient.connect(url, function(err, db) {
 			  if (err) throw err;
