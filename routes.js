@@ -100,7 +100,7 @@ MongoClient.connect(url, function(err, db1) {
 
 			MongoClient.connect(url, function(err, db) {
 			  if (err) throw err;
-			  var dbo = db.db("data");
+			  var dbo = db.db("temperature");
 			  var myobj = {
 
                  'room':         data1,
