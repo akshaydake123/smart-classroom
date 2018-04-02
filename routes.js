@@ -84,6 +84,45 @@ MongoClient.connect(url, function(err, db1) {
 			});
 
 	});
+	
+	
+	router.post('/temperature', (req, res) => {
+		
+		
+		
+	    var data1 = req.body.room;
+		var data2 = req.body.temp;
+    	var data3 = req.body.humidity;
+		var data4 = req.body.timestamp;
+
+			var MongoClient = require('mongodb').MongoClient;
+			var url = "mongodb://root:root@ds231719.mlab.com:31719/temperature"
+
+			MongoClient.connect(url, function(err, db) {
+			  if (err) throw err;
+			  var dbo = db.db("data");
+			  var myobj = {
+
+                 'room':         data1,
+                'temp':         data2,
+                'humidity':     data3,
+                'timestamp':    data4
+
+
+				 };
+			  dbo.collection("data").insertOne(myobj, function(err, res) {
+			    if (err) throw err;
+			    console.log("1 document inserted");
+
+
+			    db.close();
+			  });
+     res.send("Inserted Sucessfully");
+			});
+
+	});
+	
+	
 
 
 	router.post('/authenticate', (req, res) => {
