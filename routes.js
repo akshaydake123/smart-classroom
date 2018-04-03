@@ -28,13 +28,14 @@ module.exports = router => {
 router.get("/display",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
+	var classroomno = req.body.classroomno;
 var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 var db1;
 MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
  var dbo = db1.db("information");
  //Find the first document in the customers collection:
- dbo.collection("info").find({}).toArray(function(err, result) {
+ dbo.collection("info").find({ classroomno: { $gt: classroomno } }).toArray(function(err, result) {
    if (err) throw err;
    console.log(result);
    res.send(result);
