@@ -25,10 +25,10 @@ const async = require('async');
 module.exports = router => {
 
 
-router.post("/display",function(req,res,next)
+router.post("/display/:classroomno",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
-	var classroomno = req.body.classroomno;
+	var classroomno = req.params.classroomno;
 var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 var db1;
 MongoClient.connect(url, function(err, db1) {
