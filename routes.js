@@ -25,7 +25,7 @@ const async = require('async');
 module.exports = router => {
 
 
-router.post("/display/:classroomno",function(req,res,next)
+router.get("/display/:classroomno",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	var classroomno = req.params.classroomno;
