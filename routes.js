@@ -66,7 +66,7 @@ MongoClient.connect(url, function(err, db1) {
              
 		   var str = result[i].slot;
 		      var str1 = req.params.time
-		 if(result[i].day !== req.params.day && str.trim() !== str1.trim() )
+		 if(str.trim() !== str1.trim() )
 			  {
 	                     demo+=result[i].classroomno+ " ";
 	                     counter++;
