@@ -46,19 +46,17 @@ MongoClient.connect(url, function(err, db1) {
 });
 
 
-	router.get("/displayalexa/:day/:starttime/:endtime",function(req,res,next)
+	router.get("/displayalexa/:day/:time",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
-	var s = req.params.starttime;
-		var e = req.params.endtime;
-		var sl = s + " to " + e;
+	
 var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 var db1;
 MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
  var dbo = db1.db("information");
  //Find the first document in the customers collection:
- dbo.collection("info").find({ day: req.params.day },{slot:s1}).toArray(function(err, result) {
+ dbo.collection("info").find({ day: req.params.day },{slot:req.params.time}).toArray(function(err, result) {
    if (err) throw err;
    console.log(result);
    res.send(result);
