@@ -58,24 +58,19 @@ MongoClient.connect(url, function(err, db1) {
  //Find the first document in the customers collection:
  dbo.collection("info").find({}).toArray(function(err, result) {
    if (err) throw err;
-	    var demo;
+	    var demo=" ";
    var counter=0;
 
-     for(var i=0 ; i< result.length;i++)
+     for(var i=0 ; i< result.length; i++)
 	 {
             
-		 
-              if(result[i].day !== req.params.day)
-		       {
-			       var n = result[i].slot.localeCompare(req.params.time);
-			       if(n != 0)
-			       {    
-			                   demo+=result[i].classroomno+ " ";
-	                                     counter++;
-			       }       
-                       }
+		 if(result[i].day !== req.params.day && result[i].slot !== req.params.time )
+			  {
+	                     demo+=result[i].classroomno+ " ";
+	                     counter++;
+               }
 	}
-	 result="The total classrooms available are"+" " + counter + " "+ "and classroom number are"+ " " + demo;
+	 result="The total classrooms available are"+" " + counter + " "+ "and classroom number are " + " " + demo;
    console.log(result);
    res.send(result);
    db1.close();
