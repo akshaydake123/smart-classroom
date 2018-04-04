@@ -58,22 +58,31 @@ MongoClient.connect(url, function(err, db1) {
  //Find the first document in the customers collection:
  dbo.collection("info").find({}).toArray(function(err, result) {
    if (err) throw err;
-	    var demo=" ";
+	    var demo="The classroom ";
    var counter=0;
 
      for(var i=0 ; i< result.length; i++)
 	 {
              
 		   var str = result[i].slot;
-		      var str1 = req.params.time
-		 if(str.trim() !== str1.trim() )
+		      var str1 = req.params.time;
+		     var dem = req.params.day;
+		         dem=dem.toLowerCase();
+		          
+		     var dem1 = result[i].day;
+		        dem1 = dem1.toLowerCase();
+		 if(str.trim() === str1.trim() )
 			  {
-	                     demo+=result[i].classroomno+ " ";
-	                     counter++;
+				   if(dem.trim() === dem1.trim() )
+				   {  
+					   demo+= " "+result[i].classroomno+ " " + "is alloted to professor "+ " " +result[i].faculty +"who takes "+" "+result[i].subject + "class" ;
+	                                   counter++;
+				   } 
                }
 	}
-	 result="The total classrooms available are"+" " + counter + " "+ "and classroom number are " + " " + demo;
-   console.log(result);
+	 //result="The total classrooms available are"+" " + counter + " "+ "and classroom number are " + " " + demo;
+        result=demo;
+	 console.log(result);
    res.send(result);
    db1.close();
  });
