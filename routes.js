@@ -75,7 +75,7 @@ MongoClient.connect(url, function(err, db1) {
 			  {
 				   if(dem.trim() === dem1.trim() )
 				   {  
-					   demo+= " "+result[i].classroomno+ " " + "is alloted to professor "+ " " +result[i].faculty +"who takes "+" "+result[i].subject + "class" ;
+					   demo+= " "+result[i].classroomno+ " " + "is alloted to professor "+ " " +result[i].faculty +" "+"who takes "+" "+result[i].subject +" " + "class" ;
 	                                   counter++;
 				   } 
                }
