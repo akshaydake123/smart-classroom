@@ -64,9 +64,11 @@ MongoClient.connect(url, function(err, db1) {
      for(var i=0 ; i< result.length;i++)
 	 {
             
+		 
               if(result[i].day !== req.params.day)
 		       {
-			       if(result[i].slot !== req.params.time)
+			       var n = result[i].slot.localeCompare(req.params.time);
+			       if(n != 0)
 			       {    
 			                   demo+=result[i].classroomno+ " ";
 	                                     counter++;
