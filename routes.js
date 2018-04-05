@@ -44,7 +44,66 @@ MongoClient.connect(url, function(err, db1) {
 });
 
 });
+router.get("/checkavailabilityalexa/:day",function(req,res,next)
+{
+  var MongoClient = require('mongodb').MongoClient;
+	
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+var db1;
+MongoClient.connect(url, function(err, db1) {
+ if (err) throw err;
+ var dbo = db1.db("information");
+ //Find the first document in the customers collection:
+ dbo.collection("info").find({}).toArray(function(err, result) {
+   if (err) throw err;
+	    var demo="The classrooms available are"+" ";
+   var counter=0;
+var cars = ["301", "302", "303","304","305","306","307","308"];
+     var all = new Array();
+	 var j=0;
+	 for(var i=0 ; i< result.length; i++)
+	 {
+             
+		   var str = result[i].day;
+		      var str1 = req.params.day;
+		 str=str.trim();
+		 str1.str1.trim();
+		 if(str===str1)
+		 { 
+		     	  all[j]=result[i].classroomno;
+		          j++; 	  
+		 } 		 
+		 
+		    
 
+	}
+	 
+	 for(var k=0;k<cars.length;k++)
+	 {
+	    var flg=0;
+		 var m = cars[k];
+		 for(var t=0;t<all.length;t++)
+		 {
+		        if(m===all[t])
+			{
+		              flag=1;		
+		 	}		
+		 }		 
+		 if(flag===0)
+		 {
+		       demo+=cars[k]+" ";	 
+		 }		 
+		 
+	 }		 
+	 //result="The total classrooms available are"+" " + counter + " "+ "and classroom number are " + " " + demo;
+        result=demo;
+	 console.log(result);
+   res.send(result);
+   db1.close();
+ });
+});
+
+});
 
 	router.get("/displayalexa/:day/:time",function(req,res,next)
 {
