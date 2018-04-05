@@ -115,7 +115,7 @@ MongoClient.connect(url, function(err, db1) {
 
 			    db.close();
 			  });
-				var dem = "The classroom"+ " " +req.params.classroom +" " +"is booked for"+" "+req.params.subject+" "+"class" ;
+				var dem = "The classroom"+ " " +req.params.classroomno +" " +"is booked for"+" "+req.params.subject+" "+"class" ;
      res.send(dem);
 			});
 
