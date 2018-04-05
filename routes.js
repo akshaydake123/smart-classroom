@@ -90,7 +90,7 @@ MongoClient.connect(url, function(err, db1) {
 
 });
 	
-	 router.post('/insertalexa', (req, res) => {
+	 router.post("/insertalexa/:classroomno/:date/:day/:time/:faculty/:subject", (req, res) => {
 	
 			var MongoClient = require('mongodb').MongoClient;
 			var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
