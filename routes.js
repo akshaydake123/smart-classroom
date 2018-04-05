@@ -66,9 +66,8 @@ var cars = ["301", "302", "303","304","305","306","307","308"];
              
 		   var str = result[i].day;
 		      var str1 = req.params.day;
-		 str=str.trim();
-		 str1.str1.trim();
-		 if(str===str1)
+		 
+		 if(str.trim() === str1.trim())
 		 { 
 		     	  all[j]=result[i].classroomno;
 		          j++; 	  
