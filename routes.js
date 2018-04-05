@@ -90,6 +90,36 @@ MongoClient.connect(url, function(err, db1) {
 
 });
 	
+	 router.post('/insertalexa', (req, res) => {
+	
+			var MongoClient = require('mongodb').MongoClient;
+			var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+
+			MongoClient.connect(url, function(err, db) {
+			  if (err) throw err;
+			  var dbo = db.db("information");
+			  var myobj = {
+                                   "classroomno": req.params.classroomno,
+                                   "date": req.params.date,
+                                   "day": req.params.day,
+                                   "slot": req.params.time,
+                                   "faculty": req.params.faculty,
+                                   "subject": req.params.subject
+
+
+				 };
+			  dbo.collection("info").insertOne(myobj, function(err, res) {
+			    if (err) throw err;
+			    console.log("1 document inserted");
+
+
+			    db.close();
+			  });
+				var dem = "The classroom"+ " " +req.params.classroom +" " +"is booked for"+" "+req.params.subject+" "+"class" ;
+     res.send(dem);
+			});
+
+	});
 	
 	
 	
