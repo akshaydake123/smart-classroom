@@ -79,7 +79,7 @@ var cars = ["301", "302", "303","304","305","306","307","308"];
 	 
 	 for(var k=0;k<cars.length;k++)
 	 {
-	    var flg=0;
+	    var flag=0;
 		 var m = cars[k];
 		 for(var t=0;t<all.length;t++)
 		 {
