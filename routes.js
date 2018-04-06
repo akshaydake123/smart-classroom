@@ -58,7 +58,7 @@ MongoClient.connect(url, function(err, db1) {
    if (err) throw err;
 	    var demo="The classrooms available are"+" ";
    var counter=0;
-var cars = ["301", "302", "303","304","305","306","307","308"];
+var cars = ["305","306","307","308"];
      var all = new Array();
 	 var j=0;
 	 for(var i=0 ; i< result.length; i++)
