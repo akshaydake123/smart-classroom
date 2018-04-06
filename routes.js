@@ -44,7 +44,7 @@ MongoClient.connect(url, function(err, db1) {
 });
 
 });
-router.get("/checkavailabilityalexa/:day",function(req,res,next)
+router.get("/checkavailabilityalexa/:day/:time",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	
@@ -66,11 +66,15 @@ var cars = ["305","306","307","308"];
              
 		   var str = result[i].day;
 		      var str1 = req.params.day;
-		 
+		    var str2 = result[i].slot;
+		 var str3 = req.params.time;
 		 if(str.trim() === str1.trim())
 		 { 
-		     	  all[j]=result[i].classroomno;
-		          j++; 	  
+			  if(str2.trim() === str3.trim())
+			  {
+				   all[j]=result[i].classroomno;
+		                    j++;
+			  }	  
 		 } 		 
 		 
 		    
