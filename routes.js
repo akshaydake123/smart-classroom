@@ -143,14 +143,14 @@ MongoClient.connect(url, function(err, db1) {
 				   if(dem.trim() === dem1.trim() )
 				   {  
 				   */
-					//   demo+= " "+result.classroomno+ " " + "is alloted to professor "+ " " +result.faculty +" "+"who takes "+" "+result.subject +" " + "class" ;
+					  demo+= " "+result[0].classroomno+ " " + "is alloted to professor "+ " " +result[0].faculty +" "+"who takes "+" "+result[0].subject +" " + "class" ;
 	                           /*        counter++;
 				   } 
                }
 	}
 	*/
 	 //result="The total classrooms available are"+" " + counter + " "+ "and classroom number are " + " " + demo;
-        //result=demo;
+        result=demo;
 	 console.log(result);
    res.send(result);
    db1.close();
