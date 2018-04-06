@@ -182,13 +182,13 @@ MongoClient.connect(url, function(err, db1) {
 	
 	
  router.post('/postdata', (req, res) => {
-		//var data1 = req.body.name;
-	  var data2 = req.body.date;
-		var data3 = req.body.day;
-	var data4 = req.body.work;
-//		var data4 = req.body.work.slot;
-  // 		var data5 = req.body.work.faculty;
-	//	var data6 = req.body.work.subject;
+	
+	var data1 = req.body.classroomno;
+	var data2 = req.body.date;
+	var data3 = req.body.day;
+	var data4 = req.body.slot;
+   	var data5 = req.body.faculty;
+	var data6 = req.body.subject;
  // your data
 	    // do something with that data (write to a DB, for instance)
 		/*res.status(200).json({
@@ -203,9 +203,12 @@ MongoClient.connect(url, function(err, db1) {
 			  var dbo = db.db("information");
 			  var myobj = {
 
+                  "classroomno" : data1,
                   "date" : data2,
                   "day" : data3,
-                  "work" : data4
+	          "slot" : data4,
+                  "faculty" : data5,
+                  "subject" : data6,
 
 
 				 };
