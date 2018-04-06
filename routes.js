@@ -148,7 +148,7 @@ MongoClient.connect(url, function(err, db1) {
 				   } 
                }
 	}
-	*/
+
 	 //result="The total classrooms available are"+" " + counter + " "+ "and classroom number are " + " " + demo;
         result=demo;
 	 console.log(result);
