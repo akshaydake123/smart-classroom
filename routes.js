@@ -24,7 +24,7 @@ var db;
 const async = require('async');
 module.exports = router => {
 
-
+// Android fetch
 router.get("/display/:classroomno",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
@@ -44,6 +44,8 @@ MongoClient.connect(url, function(err, db1) {
 });
 
 });
+	
+// for alexa to fetch data	
 router.get("/checkavailabilityalexa/:day/:time",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
@@ -109,7 +111,9 @@ var cars = ["305","306","307","308"];
 
 });
 
-	router.get("/displayalexa/:day/:time",function(req,res,next)
+	
+// for alexa	
+router.get("/displayalexa/:classroomno/:day/:time",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	
@@ -119,10 +123,10 @@ MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
  var dbo = db1.db("information");
  //Find the first document in the customers collection:
- dbo.collection("info").find({}).toArray(function(err, result) {
+ dbo.collection("info").find({ $and:[{classroomno:req.params.classroomno},{day:req.params.day},{slot:req.params.time}]}).toArray(function(err, result) {
    if (err) throw err;
 	    var demo="The classroom ";
-   var counter=0;
+   /*var counter=0;
 
      for(var i=0 ; i< result.length; i++)
 	 {
@@ -138,11 +142,13 @@ MongoClient.connect(url, function(err, db1) {
 			  {
 				   if(dem.trim() === dem1.trim() )
 				   {  
-					   demo+= " "+result[i].classroomno+ " " + "is alloted to professor "+ " " +result[i].faculty +" "+"who takes "+" "+result[i].subject +" " + "class" ;
-	                                   counter++;
+				   */
+					   demo+= " "+result.classroomno+ " " + "is alloted to professor "+ " " +result.faculty +" "+"who takes "+" "+result.subject +" " + "class" ;
+	                           /*        counter++;
 				   } 
                }
 	}
+	*/
 	 //result="The total classrooms available are"+" " + counter + " "+ "and classroom number are " + " " + demo;
         result=demo;
 	 console.log(result);
