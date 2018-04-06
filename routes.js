@@ -68,6 +68,7 @@ var cars = ["305","306","307","308"];
 		      var str1 = req.params.day;
 		    var str2 = result[i].slot;
 		 var str3 = req.params.time;
+		 str3 = str3.toLowerCase()
 		 if(str.trim() === str1.trim())
 		 { 
 			  if(str2.trim() === str3.trim())
