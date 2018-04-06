@@ -113,7 +113,7 @@ var cars = ["305","306","307","308"];
 
 	
 // for alexa	
-router.get("/displayalexa/:day/:time",function(req,res,next)
+router.get("/displayalexa/:classroomno/:day/:time",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	
@@ -138,13 +138,20 @@ MongoClient.connect(url, function(err, db1) {
 		          
 		     var dem1 = result[i].day;
 		        dem1 = dem1.toLowerCase();
+		 
+		   var dem2 = result[i].classroomno;
+		        dem2 = dem2.toLowerCase();
+		  var dem3 = req.params.classroomno;
+		 dem3=dem3.toLowerCase();
 		 if(str.trim() === str1.trim() )
 			  {
 				   if(dem.trim() === dem1.trim() )
 				   {  
-				  
-					  demo+= " "+result[i].classroomno+ " " + "is alloted to professor "+ " " +result[i].faculty +" "+"who takes "+" "+result[i].subject +" " + "class" ;
-	                                   counter++;
+			                 if(dem2.trim() === dem3.trim())
+					 {
+					    demo+= " "+result[i].classroomno+ " " + "is alloted to professor "+ " " +result[i].faculty +" "+"who takes "+" "+result[i].subject +" " + "class" ;
+	                                    counter++;
+					 }		 
 				   } 
                }
 	}
