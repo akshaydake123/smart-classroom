@@ -140,9 +140,9 @@ MongoClient.connect(url, function(err, db1) {
 		        dem1 = dem1.toLowerCase();
 		 
 		   var dem2 = result[i].classroomno;
-		        dem2 = dem2.toLowerCase();
+		       
 		  var dem3 = req.params.classroomno;
-		 dem3=dem3.toLowerCase();
+		
 		 if(str.trim() === str1.trim() )
 			  {
 				   if(dem.trim() === dem1.trim() )
