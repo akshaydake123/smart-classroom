@@ -113,7 +113,7 @@ var cars = ["305","306","307","308"];
 
 	
 // for alexa	
-router.get("/displayalexa/:classroomno/:day/:time",function(req,res,next)
+router.get("/displayalexa/:day/:time",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	
@@ -123,7 +123,7 @@ MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
  var dbo = db1.db("information");
  //Find the first document in the customers collection:
- dbo.collection("info").find({ $and:[{"classroomno":req.params.classroomno},{"day":req.params.day},{"slot":req.params.time}]}).toArray(function(err, result) {
+ dbo.collection("info").find({ $and:[{"day":req.params.day},{"slot":req.params.time}]}).toArray(function(err, result) {
    if (err) throw err;
 	    var demo="The classroom ";
    /*var counter=0;
