@@ -123,10 +123,10 @@ MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
  var dbo = db1.db("information");
  //Find the first document in the customers collection:
- dbo.collection("info").find({ $and:[{"day":req.params.day},{"slot":req.params.time}]}).toArray(function(err, result) {
+ dbo.collection("info").find({}).toArray(function(err, result) {
    if (err) throw err;
 	    var demo="The classroom ";
-   /*var counter=0;
+   var counter=0;
 
      for(var i=0 ; i< result.length; i++)
 	 {
@@ -142,9 +142,9 @@ MongoClient.connect(url, function(err, db1) {
 			  {
 				   if(dem.trim() === dem1.trim() )
 				   {  
-				   */
-					  demo+= " "+result[0].classroomno+ " " + "is alloted to professor "+ " " +result[0].faculty +" "+"who takes "+" "+result[0].subject +" " + "class" ;
-	                           /*        counter++;
+				  
+					  demo+= " "+result[i].classroomno+ " " + "is alloted to professor "+ " " +result[i].faculty +" "+"who takes "+" "+result[i].subject +" " + "class" ;
+	                                   counter++;
 				   } 
                }
 	}
