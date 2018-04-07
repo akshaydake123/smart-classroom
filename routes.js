@@ -66,7 +66,8 @@ MongoClient.connect(url, function(err, db1) {
 	         demo+=result[i].day+" : "+result[i].slot +" "; 
 	 
 	 }
-   res.send(demo);
+	 var jsonstring = {"data":{"type":"text","text":demo}}
+   res.send(jsonstring);
    db1.close();
  });
 });
