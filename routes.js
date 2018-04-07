@@ -67,8 +67,8 @@ MongoClient.connect(url, function(err, db1) {
 	 
 	 }
 	 var jsonstring = {"data":{"type":"text","text":demo}};
-	 var obj = JSON.parse(jsonstring);
-   res.send(obj);
+	 console.log(jsonstring);
+   res.send(jsonstring);
    db1.close();
  });
 });
