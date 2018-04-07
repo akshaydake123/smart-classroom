@@ -297,7 +297,9 @@ if(result.length === 0)
 			    db.close();
 			  });
 				var dem = "The classroom"+ " " +req.params.classroomno +" " +"is booked for"+" "+req.params.subject+" "+"class" ;
-     res.send(dem);
+                               var jsonstring = {"data":{"type":"text","text":dem}};
+	                           console.log(jsonstring);
+				res.send(jsonstring);
 			});
 
 	});
