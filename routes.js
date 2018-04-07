@@ -45,6 +45,35 @@ MongoClient.connect(url, function(err, db1) {
 
 });
 	
+	
+	// Chatbot fetch
+router.get("/chatbotfetch/:classroomno",function(req,res,next)
+{
+  var MongoClient = require('mongodb').MongoClient;
+	var classroomno = req.params.classroomno;
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+var db1;
+MongoClient.connect(url, function(err, db1) {
+ if (err) throw err;
+ var dbo = db1.db("information");
+ //Find the first document in the customers collection:
+ dbo.collection("info").find({ classroomno: req.params.classroomno }).toArray(function(err, result) {
+   if (err) throw err;
+	 var demo="";
+   console.log(result);
+	 for(var i=0;i<result.length;i++)
+	 {
+	         demo+=result[i].day+" : "+result[i].slot +" "; 
+	 
+	 }
+   res.send(demo);
+   db1.close();
+ });
+});
+
+});
+	
+	
 // for alexa to fetch data	
 router.get("/checkavailabilityalexa/:day/:time",function(req,res,next)
 {
