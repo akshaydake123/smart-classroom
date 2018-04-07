@@ -75,6 +75,43 @@ MongoClient.connect(url, function(err, db1) {
 
 });
 	
+	// Chatbot Availabiltity fetch
+router.get("/chatbotavailability/:classroomno/:day/:time",function(req,res,next)
+{
+  var MongoClient = require('mongodb').MongoClient;
+	var classroomno = req.params.classroomno;
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+var db1;
+MongoClient.connect(url, function(err, db1) {
+ if (err) throw err;
+ var dbo = db1.db("information");
+ //Find the first document in the customers collection:
+ dbo.collection("info").find({$and:[{classroomno:req.params.classroomno},{day:req.params.day},{slot:req.params.time}]}).toArray(function(err, result) {
+   if (err) throw err;
+	 var demo="The classroom ";
+   console.log(result);
+	 for(var i=0;i<result.length;i++)
+	 {
+	         demo+=+" "+result[i].classroomno+"is booked for "+result[i].subject +"by Professor "+" "+result[i].faculty; 
+	 
+	 }
+	 var jsonstring = {"data":{"type":"text","text":demo}};
+	 console.log(jsonstring);
+   res.send(jsonstring);
+   db1.close();
+ });
+});
+
+});
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 // for alexa to fetch data	
 router.get("/checkavailabilityalexa/:day/:time",function(req,res,next)
