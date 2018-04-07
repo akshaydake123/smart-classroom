@@ -269,6 +269,44 @@ if(result.length === 0)
 	
 	
 	
+	
+	
+	 router.get("/chatbotinsert/:classroomno/:date/:day/:time/:faculty/:subject", (req, res) => {
+	
+			var MongoClient = require('mongodb').MongoClient;
+			var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+
+			MongoClient.connect(url, function(err, db) {
+			  if (err) throw err;
+			  var dbo = db.db("information");
+			  var myobj = {
+                                   "classroomno": req.params.classroomno,
+                                   "date": req.params.date,
+                                   "day": req.params.day,
+                                   "slot": req.params.time,
+                                   "faculty": req.params.faculty,
+                                   "subject": req.params.subject
+
+
+				 };
+			  dbo.collection("info").insertOne(myobj, function(err, res) {
+			    if (err) throw err;
+			    console.log("1 document inserted");
+
+
+			    db.close();
+			  });
+				var dem = "The classroom"+ " " +req.params.classroomno +" " +"is booked for"+" "+req.params.subject+" "+"class" ;
+     res.send(dem);
+			});
+
+	});
+	
+	
+	
+	
+	
+	
  router.post('/postdata', (req, res) => {
 	
 	var data1 = req.body.classroomno;
