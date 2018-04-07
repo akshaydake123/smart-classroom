@@ -90,14 +90,25 @@ MongoClient.connect(url, function(err, db1) {
    if (err) throw err;
 	 var demo="The classroom ";
    console.log(result);
-	 for(var i=0;i<result.length;i++)
-	 {
-	         demo+=+" "+result[i].classroomno+"is booked for "+result[i].subject +"by Professor "+" "+result[i].faculty; 
-	 
+	 if(result.length === 0)
+	 { 
+		  var jj = "The classroom" + " " +result[i].classroomno + " " +"is Available";
+	  var jsonstring = {"data":{"type":"text","text":jj}};
+	  console.log(jsonstring);
+		  res.send(jsonstring);
 	 }
-	 var jsonstring = {"data":{"type":"text","text":demo}};
-	 console.log(jsonstring);
-   res.send(jsonstring);
+	 else
+	 {
+	    for(var i=0;i<result.length;i++)
+	      {
+	          demo+=+" "+result[i].classroomno+"is booked for "+result[i].subject +"by Professor "+" "+result[i].faculty; 
+	 
+	     }
+	     var jsonstring = {"data":{"type":"text","text":demo}};
+	  console.log(jsonstring);
+		  res.send(jsonstring);
+	 }		 
+  
    db1.close();
  });
 });
