@@ -92,7 +92,7 @@ MongoClient.connect(url, function(err, db1) {
    console.log(result);
 	 if(result.length === 0)
 	 { 
-		  var jj = "The classroom" + " " +result[i].classroomno + " " +"is Available";
+		  var jj = "The classroom" + " " +req.params.classroomno + " " +"is Available";
 	  var jsonstring = {"data":{"type":"text","text":jj}};
 	  console.log(jsonstring);
 		  res.send(jsonstring);
@@ -202,43 +202,34 @@ MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
  var dbo = db1.db("information");
  //Find the first document in the customers collection:
- dbo.collection("info").find({}).toArray(function(err, result) {
+dbo.collection("info").find({$and:[{classroomno:req.params.classroomno},{day:req.params.day},{slot:req.params.time}]}).toArray(function(err, result) {
    if (err) throw err;
 	    var demo="The classroom ";
    var counter=0;
-
-     for(var i=0 ; i< result.length; i++)
-	 {
+if(result.length === 0)
+	 { 
+		  var jj = "The classroom" + " " +req.params.classroomno + " " +"is Available";
+	//  var jsonstring = {"data":{"type":"text","text":jj}};
+	  console.log(jj);
+		  res.send(jj);
+	 }
+	else
+	{
+              for(var i=0 ; i< result.length; i++)
+	      {
              
-		   var str = result[i].slot;
-		      var str1 = req.params.time;
-		     var dem = req.params.day;
-		         dem=dem.toLowerCase();
-		          
-		     var dem1 = result[i].day;
-		        dem1 = dem1.toLowerCase();
-		 
-		   var dem2 = result[i].classroomno;
-		       
-		  var dem3 = req.params.classroomno;
-		
-		 if(str.trim() === str1.trim() )
-			  {
-				   if(dem.trim() === dem1.trim() )
-				   {  
-			                 if(dem2.trim() === dem3.trim())
-					 {
-					    demo+= " "+result[i].classroomno+ " " + "is alloted to professor "+ " " +result[i].faculty +" "+"who takes "+" "+result[i].subject +" " + "class" ;
-	                                    counter++;
-					 }		 
-				   } 
+              demo+= " "+result[i].classroomno+ " " + "is alloted to professor "+ " " +result[i].faculty +" "+"who takes "+" "+result[i].subject +" " + "class" ;
+	            counter++;
+					 
+				   
                }
-	}
+	
 
-	 //result="The total classrooms available are"+" " + counter + " "+ "and classroom number are " + " " + demo;
-        result=demo;
-	 console.log(result);
-   res.send(result);
+	        //result="The total classrooms available are"+" " + counter + " "+ "and classroom number are " + " " + demo;
+               result=demo;
+	       console.log(result);
+             res.send(result);
+	}	
    db1.close();
  });
 });
