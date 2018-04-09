@@ -402,8 +402,49 @@ module.exports = router => {
 
     });
 
+  router.post('/insertfeedback', (req, res) => {
+
+        var data1 = req.body.name;
+        var data2 = req.body.email;
+        var data3 = req.body.classroomno;
+        var data4 = req.body.aclevel;
+        var data5 = req.body.projector;
+        
+        // your data
+        // do something with that data (write to a DB, for instance)
+        /*res.status(200).json({
+			message: "Fucked up post " +data2 +'***' +data3
+        });
+			*/
+        var MongoClient = require('mongodb').MongoClient;
+        var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+
+        MongoClient.connect(url, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("information");
+            var myobj = {
+
+                "name": data1,
+                "email": data2,
+                "classroomno": data3,
+                "aclevel": data4,
+                "projector": data5,
+                
 
 
+            };
+            dbo.collection("feedback").insertOne(myobj, function(err, res) {
+                if (err) throw err;
+                console.log("1 document inserted");
+
+
+                db.close();
+            });
+            res.send("Inserted Sucessfully");
+        });
+
+    });
+ 
 
     router.post('/postdata', (req, res) => {
 
