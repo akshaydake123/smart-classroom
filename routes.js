@@ -102,6 +102,40 @@ module.exports = router => {
 
     });
 
+	
+	  router.get("/chatbotstatus/:classroomno", function(req, res, next) {
+        var MongoClient = require('mongodb').MongoClient;
+        var classroomno = req.params.classroomno;
+        var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+        var db1;
+        MongoClient.connect(url, function(err, db1) {
+            if (err) throw err;
+            var dbo = db1.db("information");
+            //Find the first document in the customers collection:
+            dbo.collection("info").find({
+                classroomno: req.params.classroomno
+            }).toArray(function(err, result) {
+                if (err) throw err;
+                var demo = "";
+                console.log(result);
+                
+                    demo +="Air Conditioned "+" " + result[0].aclevel + " and Projector " + " " + result[0].projector;
+
+                
+                var jsonstring = {
+                    "data": {
+                        "type": "text",
+                        "text": demo
+                    }
+                };
+                console.log(jsonstring);
+                res.send(jsonstring);
+                db1.close();
+            });
+        });
+
+    });
+	
     router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) => {
 
         var MongoClient = require('mongodb').MongoClient;
@@ -345,7 +379,7 @@ module.exports = router => {
                 if (err) throw err;
                 
                
-                    var jj = "Air Condition" + " " + req.params.aclevel + " " + "and  projector"+ " " +req.params.projector;
+                    var jj = "Air Condition" + " " + result[0].aclevel + " " + "and  projector"+ " " +result[0].projector;
                     //  var jsonstring = {"data":{"type":"text","text":jj}};
                     console.log(jj);
                     res.send(jj);
