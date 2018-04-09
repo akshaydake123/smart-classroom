@@ -112,12 +112,12 @@ router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) =>
 				
 			  var dbo = db.db("information");
 			
-				var myquery = { _id: "5acb28c4c4df440014868805" };
+				var myquery = { "_id": "5acb28c4c4df440014868805" };
                                var newvalues = { $set: {ac : req.params.acvalue, projector: req.params.projectorvalue,time: req.params.timestamp  } };
 				
 			   dbo.collection("sensordata").updateOne(myquery, newvalues, function(err, res) {
                                         if (err) throw err;
-                                       console.log("1 document updated");
+                                       console.log("1 document updated Now");
                                   
 				   db.close();
                           });
