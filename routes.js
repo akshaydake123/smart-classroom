@@ -2,10 +2,8 @@
 
 const auth = require('basic-auth');
 const jwt = require('jsonwebtoken');
-
 const register = require('./functions/register');
 const login = require('./functions/login');
-
 const profile = require('./functions/profile');
 const password = require('./functions/password');
 const config = require('./config/config.json');
@@ -29,7 +27,7 @@ router.get("/display/:classroomno",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	var classroomno = req.params.classroomno;
-var url = "mongodb://yourusername:yourusername@ds113749.mlab.com:13749/information";
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 var db1;
 MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
@@ -51,7 +49,7 @@ router.get("/chatbotfetch/:classroomno",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	var classroomno = req.params.classroomno;
-var url = "mongodb://yourusername:youruserpass@ds113749.mlab.com:13749/information";
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 var db1;
 MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
@@ -75,12 +73,42 @@ MongoClient.connect(url, function(err, db1) {
 
 });
 	
+router.get("/fetchsensordata/ac_value/:projector_value/:time_stamp", (req, res) => {
+	
+			var MongoClient = require('mongodb').MongoClient;
+			var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+
+			MongoClient.connect(url, function(err, db) {
+			  if (err) throw err;
+			  var dbo = db.db("information");
+			  var myobj = {
+                                   "ac" : req.params.ac_value;
+				   "projector" : req.params.projector_value;
+                                   "time_stamp" :req.params.time_stamp;
+			  };
+			  dbo.collection("sensordata").insertOne(myobj, function(err, res) {
+			    if (err) throw err;
+			    console.log("1 document inserted");
+
+
+			    db.close();
+			  });
+				//var dem = "The classroom"+ " " +req.params.classroomno +" " +"is booked for"+" "+req.params.subject+" "+"class" ;
+                           var result = "Sensor data inserted";
+				 res.send(result);
+			});
+
+	});
+	
+	
+	
+	
 	// Chatbot Availabiltity fetch
 router.get("/chatbotavailability/:classroomno/:day/:time",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	var classroomno = req.params.classroomno;
-var url = "mongodb://yourusername:youruserPass@ds113749.mlab.com:13749/information";
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 var db1;
 MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
@@ -129,7 +157,7 @@ router.get("/checkavailabilityalexa/:day/:time",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	
-var url = "mongodb://yourusername:youruserpass@ds113749.mlab.com:13749/information";
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 var db1;
 MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
@@ -196,7 +224,7 @@ router.get("/displayalexa/:classroomno/:day/:time",function(req,res,next)
 {
   var MongoClient = require('mongodb').MongoClient;
 	
-var url = "mongodb://yourusername:youruserpass@ds113749.mlab.com:13749/information";
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 var db1;
 MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
@@ -239,7 +267,7 @@ if(result.length === 0)
 	 router.get("/insertalexa/:classroomno/:date/:day/:time/:faculty/:subject", (req, res) => {
 	
 			var MongoClient = require('mongodb').MongoClient;
-			var url = "mongodb://yourusername:youruserpass@ds113749.mlab.com:13749/information";
+			var url = "mongodb://root:rootyouruserpass@ds113749.mlab.com:13749/information";
 
 			MongoClient.connect(url, function(err, db) {
 			  if (err) throw err;
@@ -274,7 +302,7 @@ if(result.length === 0)
 	 router.get("/chatbotinsert/:classroomno/:date/:day/:time/:faculty/:subject", (req, res) => {
 	
 			var MongoClient = require('mongodb').MongoClient;
-			var url = "mongodb://yourusername:youruserpass@ds113749.mlab.com:13749/information";
+			var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 
 			MongoClient.connect(url, function(err, db) {
 			  if (err) throw err;
@@ -324,7 +352,7 @@ if(result.length === 0)
         });
 			*/
 			var MongoClient = require('mongodb').MongoClient;
-			var url = "mongodb://yourusername:youruserpass@ds113749.mlab.com:13749/information";
+			var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 
 			MongoClient.connect(url, function(err, db) {
 			  if (err) throw err;
@@ -363,7 +391,7 @@ if(result.length === 0)
 		var data4 = req.body.timestamp;
 
 			var MongoClient = require('mongodb').MongoClient;
-			var url = "mongodb://yourusername:youruserpass@ds231719.mlab.com:31719/temperature"
+			var url = "mongodb://root:root@ds231719.mlab.com:31719/temperature"
 
 			MongoClient.connect(url, function(err, db) {
 			  if (err) throw err;
