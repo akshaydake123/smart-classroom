@@ -118,12 +118,12 @@ router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) =>
 			   dbo.collection("sensordata").updateOne(myquery, newvalues, function(err, res) {
                                         if (err) throw err;
                                        console.log("1 document updated");
-                                    res.send("1 document updated");
+                                  
 				   db.close();
                           });
 				//var dem = "The classroom"+ " " +req.params.classroomno +" " +"is booked for"+" "+req.params.subject+" "+"class" ;
                          //  var result = "Sensor data Updated";
-				
+				  res.send("1 document updated");
 			});
 
 	});
