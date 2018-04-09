@@ -114,9 +114,9 @@ router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) =>
 			
 			
                                var newvalues = { $set: {ac : req.params.acvalue, projector: req.params.projectorvalue,time: req.params.timestamp  } };
-				var doc = db.collection("sensordata").find({}).toArray();
-				var myquery1 = doc[0]._id;
-			        var myquery = {'_id':myquery1};
+				var doc = db.collection("sensordata").find({});
+				var myquery1 = doc._id;
+			        var myquery = {"_id":myquery1};
 				dbo.collection("sensordata").updateOne(myquery, newvalues, function(err, res) {
                                         if (err) throw err;
                                        console.log("1 document updated Now");
