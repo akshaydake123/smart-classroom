@@ -377,13 +377,11 @@ module.exports = router => {
             //Find the first document in the customers collection:
             dbo.collection("sensordata").find({}).toArray(function(err, result) {
                 if (err) throw err;
-                
-               
-                    var jj = "Air Condition" + " " + result[0].aclevel + " " + "and  projector"+ " " +result[0].projector;
+                var jj = "Air Condition" + " " + result[0].aclevel + " " + "and  projector"+ " " +result[0].projector;
                     //  var jsonstring = {"data":{"type":"text","text":jj}};
                     console.log(jj);
                     res.send(jj);
-                  }
+                  
                 db1.close();
             });
         });
