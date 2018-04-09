@@ -82,9 +82,9 @@ router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) =>
 			  if (err) throw err;
 			  var dbo = db.db("information");
 			  var myobj = {
-                                   "ac" : req.params.acvalue;
-				   "projector" : req.params.projectorvalue;
-				   "time" : req.params.timestamp;
+                                   "ac" : req.params.acvalue,
+				   "projector" : req.params.projectorvalue,
+				   "time" : req.params.timestamp
 				   };
 			  dbo.collection("sensordata").insertOne(myobj, function(err, res) {
 			    if (err) throw err;
