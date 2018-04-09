@@ -112,9 +112,7 @@ module.exports = router => {
             if (err) throw err;
             var dbo = db1.db("information");
             //Find the first document in the customers collection:
-            dbo.collection("info").find({
-                classroomno: req.params.classroomno
-            }).toArray(function(err, result) {
+            dbo.collection("info").find({}).toArray(function(err, result) {
                 if (err) throw err;
                 var demo = "";
                 console.log(result);
