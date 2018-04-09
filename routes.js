@@ -330,6 +330,34 @@ module.exports = router => {
 
     });
 
+	
+	// for alexa	
+    router.get("/alexaclassstatus/:classroomno", function(req, res, next) {
+        var MongoClient = require('mongodb').MongoClient;
+
+        var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+        var db1;
+        MongoClient.connect(url, function(err, db1) {
+            if (err) throw err;
+            var dbo = db1.db("information");
+            //Find the first document in the customers collection:
+            dbo.collection("sensordata").find({}).toArray(function(err, result) {
+                if (err) throw err;
+                
+               
+                    var jj = "Air Condition" + " " + req.params.aclevel + " " + "and  projector"+ " " +req.params.projector;
+                    //  var jsonstring = {"data":{"type":"text","text":jj}};
+                    console.log(jj);
+                    res.send(jj);
+                  }
+                db1.close();
+            });
+        });
+
+    });
+	
+	
+	
     router.get("/insertalexa/:classroomno/:date/:day/:time/:faculty/:subject", (req, res) => {
 
         var MongoClient = require('mongodb').MongoClient;
