@@ -73,7 +73,7 @@ MongoClient.connect(url, function(err, db1) {
 
 });
 	
-router.get("/fetchsensordata/ac_value/:projector_value/:time_stamp", (req, res) => {
+router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) => {
 	
 			var MongoClient = require('mongodb').MongoClient;
 			var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
@@ -82,10 +82,10 @@ router.get("/fetchsensordata/ac_value/:projector_value/:time_stamp", (req, res) 
 			  if (err) throw err;
 			  var dbo = db.db("information");
 			  var myobj = {
-                                   "ac" : req.params.ac_value;
-				   "projector" : req.params.projector_value;
-                                   "time_stamp" :req.params.time_stamp;
-			  };
+                                   "ac" : req.params.acvalue;
+				   "projector" : req.params.projectorvalue;
+				   "time" : req.params.timestamp;
+				   };
 			  dbo.collection("sensordata").insertOne(myobj, function(err, res) {
 			    if (err) throw err;
 			    console.log("1 document inserted");
