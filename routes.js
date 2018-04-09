@@ -7,7 +7,7 @@ const login = require('./functions/login');
 const profile = require('./functions/profile');
 const password = require('./functions/password');
 const config = require('./config/config.json');
-
+var ObjectID = require('mongodb').ObjectID;
 var bodyParser  =   require("body-parser");
 
 var express = require('express')
@@ -113,11 +113,11 @@ router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) =>
 			  var dbo = db.db("information");
 			
 			
-                               var newvalues = { $set: {ac : req.params.acvalue, projector: req.params.projectorvalue,time: req.params.timestamp  } };
-				var doc = db.collection("sensordata").find({});
-				var myquery1 = doc._id;
-			        var myquery = {"_id":myquery1};
-				dbo.collection("sensordata").updateOne(myquery, newvalues, function(err, res) {
+                               var newvalues = { $set: {"ac" : req.params.acvalue, "projector": req.params.projectorvalue,"time": req.params.timestamp  } };
+				//var doc = db.collection("sensordata").find({});
+			//	var myquery1 = doc._id;
+			  //      var myquery = {"_id":myquery1};
+				dbo.collection("sensordata").updateOne({"_id": ObjectID("5acb28c4c4df440014868805")}, newvalues, function(err, res) {
                                         if (err) throw err;
                                        console.log("1 document updated Now");
                                   
