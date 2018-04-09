@@ -53,7 +53,7 @@ MongoClient.connect(url, function(err, db1) {
  if (err) throw err;
  var dbo = db1.db("information");
  //Find the first document in the customers collection:
- dbo.collection("sensor").find({}).toArray(function(err, result) {
+ dbo.collection("sensordata").find({}).toArray(function(err, result) {
    if (err) throw err;
    console.log(result);
    res.send(result);
