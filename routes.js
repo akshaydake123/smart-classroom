@@ -100,32 +100,7 @@ router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) =>
 
 	});
 	
-	router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) => {
 	
-			var MongoClient = require('mongodb').MongoClient;
-			var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
-
-			MongoClient.connect(url, function(err, db) {
-			  if (err) throw err;
-			  var dbo = db.db("information");
-			  var myobj = {
-                                   "ac" : req.params.acvalue,
-				   "projector" : req.params.projectorvalue,
-				   "time" : req.params.timestamp
-				   };
-			  dbo.collection("sensordata").insertOne(myobj, function(err, res) {
-			    if (err) throw err;
-			    console.log("1 document inserted");
-
-
-			    db.close();
-			  });
-				//var dem = "The classroom"+ " " +req.params.classroomno +" " +"is booked for"+" "+req.params.subject+" "+"class" ;
-                           var result = "Sensor data inserted";
-				 res.send(result);
-			});
-
-	});
 	
 	router.get("/sensordata/:acvalue/:projectorvalue/:timestamp", (req, res) => {
 	
@@ -134,18 +109,21 @@ router.get("/fetchsensordata/:acvalue/:projectorvalue/:timestamp", (req, res) =>
 
 			MongoClient.connect(url, function(err, db) {
 			  if (err) throw err;
+				
 			  var dbo = db.db("information");
 			
-			  dbo.collection("sensordata").update({'_id':'5acb28c4c4df440014868805'},{$set:{'ac':req.params.acvalue,'projector':req.params.projectorvalue,'time':req.params.timestamp}}, function(err, res) {
-			    if (err) throw err;
-			    console.log(" document Updated");
-
-
-			    db.close();
-			  });
+				var myquery = { _id: "5acb28c4c4df440014868805" };
+                               var newvalues = { $set: {ac : req.params.acvalue, projector: req.params.projectorvalue,time: req.params.timestamp  } };
+				
+			   dbo.collection("sensordata").updateOne(myquery, newvalues, function(err, res) {
+                                        if (err) throw err;
+                                       console.log("1 document updated");
+                                    res.send("1 document updated");
+				   db.close();
+                          });
 				//var dem = "The classroom"+ " " +req.params.classroomno +" " +"is booked for"+" "+req.params.subject+" "+"class" ;
-                           var result = "Sensor data Updated";
-				 res.send(result);
+                         //  var result = "Sensor data Updated";
+				
 			});
 
 	});
