@@ -43,6 +43,29 @@ MongoClient.connect(url, function(err, db1) {
 
 });
 	
+ router.get("/statusdata/",function(req,res,next)
+ {
+  var MongoClient = require('mongodb').MongoClient;
+	
+var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
+var db1;
+MongoClient.connect(url, function(err, db1) {
+ if (err) throw err;
+ var dbo = db1.db("information");
+ //Find the first document in the customers collection:
+ dbo.collection("sensor").find({}).toArray(function(err, result) {
+   if (err) throw err;
+   console.log(result);
+   res.send(result);
+   db1.close();
+ });
+});
+
+});
+	
+	
+	
+	
 	
 	// Chatbot fetch
 router.get("/chatbotfetch/:classroomno",function(req,res,next)
