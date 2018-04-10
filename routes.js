@@ -117,7 +117,7 @@ module.exports = router => {
                 var demo = "";
                 console.log(result);
                 
-                    demo +="Air Conditioned "+" " + result[0].aclevel + " and Projector " + " " + result[0].projector;
+                    demo +="Air Conditioned "+" " + result[0].ac + " and Projector " + " " + result[0].projector;
 
                 
                 var jsonstring = {
@@ -375,7 +375,7 @@ module.exports = router => {
             //Find the first document in the customers collection:
             dbo.collection("sensordata").find({}).toArray(function(err, result) {
                 if (err) throw err;
-                var jj = "Air Condition" + " " + result[0].aclevel + " " + "and  projector"+ " " +result[0].projector;
+                var jj = "Air Condition" + " " + result[0].ac + " " + "and  projector"+ " " +result[0].projector;
                     //  var jsonstring = {"data":{"type":"text","text":jj}};
                     console.log(jj);
                     res.send(jj);
