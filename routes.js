@@ -391,7 +391,7 @@ module.exports = router => {
     router.get("/insertalexa/:classroomno/:date/:day/:time/:faculty/:subject", (req, res) => {
 
         var MongoClient = require('mongodb').MongoClient;
-        var url = "mongodb://root:rootyouruserpass@ds113749.mlab.com:13749/information";
+        var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
 
         MongoClient.connect(url, function(err, db) {
             if (err) throw err;
