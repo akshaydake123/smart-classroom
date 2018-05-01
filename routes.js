@@ -116,7 +116,8 @@ module.exports = router => {
                 if (err) throw err;
                 var demo = "";
                 console.log(result);
-                
+                      
+		    
                     demo +="Air Conditioned "+" " + result[0].ac + " and Projector " + " " + result[0].projector;
 
                 
