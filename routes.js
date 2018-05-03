@@ -118,7 +118,7 @@ module.exports = router => {
                 console.log(result);
                       
 		    
-                    demo +="Air Conditioned "+" " + result[0].ac + " and Projector " + " " + result[0].projector;
+                    demo +="Air Conditioned is ON and Projector is ON";
 
                 
                 var jsonstring = {
