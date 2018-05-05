@@ -164,7 +164,7 @@ module.exports = router => {
 
 
 
-    router.get("/sensordata/:acvalue/:projectorvalue/:timestamp", (req, res) => {
+    router.get("/sensordata/:acvalue/:doorvalue/:projectorvalue/:timestamp", (req, res) => {
 
         var MongoClient = require('mongodb').MongoClient;
         var url = "mongodb://root:root@ds113749.mlab.com:13749/information";
@@ -178,6 +178,7 @@ module.exports = router => {
             var newvalues = {
                 $set: {
                     "ac": req.params.acvalue,
+		    "door":req.params.doorvalue,	
                     "projector": req.params.projectorvalue,
                     "time": req.params.timestamp
                 }
